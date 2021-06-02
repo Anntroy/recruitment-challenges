@@ -21,6 +21,18 @@ api.get("/players", (req, res) => {
   res.json(players);
 });
 
+api.post("/players", (req, res) => {
+  const { name, age, health, bag } = req.body;
+  if (name && age && health && bag) {
+    const id = players.length + 1;
+    const newPlayer = { ...req.body, id };
+    players.push(newPlayer);
+    res.status(201).json(players);
+  } else {
+    res.status(500).json({ error: "Error occures" });
+  }
+});
+
 // ENDPOINTS FOR OBJECTS
 api.get("/objects", (req, res) => {
   res.json(objects);
