@@ -20,4 +20,16 @@ api.get("/objects", function (req, res) {
   res.json(objects);
 });
 
+api.post("/objects", function (req, res) {
+  const { name, value } = req.body;
+  if (name && value) {
+    const id = objects.length + 1;
+    const newObject = { ...req.body, id };
+    objects.push(newObject);
+    res.status(201).json(objects);
+  } else {
+    res.status(500).json({ error: "Error occures" });
+  }
+});
+
 module.exports = api;
