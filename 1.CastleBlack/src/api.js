@@ -16,7 +16,7 @@ const objects = [
   { id: 4, name: "potion", value: +20 },
 ];
 
-// EXAMPLE ENDPOINT: LIST ALL OBJECTS
+// ENDPOINTS FOR OBJECTS
 api.get("/objects", function (req, res) {
   res.json(objects);
 });
