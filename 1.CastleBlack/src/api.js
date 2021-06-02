@@ -33,6 +33,14 @@ api.post("/players", (req, res) => {
   }
 });
 
+api.get("/players/:id", (req, res) => {
+  const { id } = req.params;
+  const playerById = _.filter(players, (player) => {
+    return player.id == id;
+  });
+  res.status(200).json(playerById);
+});
+
 // ENDPOINTS FOR OBJECTS
 api.get("/objects", (req, res) => {
   res.json(objects);
