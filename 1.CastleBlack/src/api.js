@@ -33,6 +33,22 @@ api.post("/objects", function (req, res) {
   }
 });
 
+api.put("/objects/:id", (req, res) => {
+  const { id } = req.params;
+  const { name, value } = req.body;
+  if (name && value) {
+    _.each(objects, (object, i) => {
+      if (object.id == id) {
+        object.name = name;
+        object.value = value;
+      }
+    });
+    res.json(objects);
+  } else {
+    res.status(500).json({ error: "Error occures" });
+  }
+});
+
 api.delete("/objects/:id", (req, res) => {
   const { id } = req.params;
   const newObjects = _.filter(objects, (object) => {
