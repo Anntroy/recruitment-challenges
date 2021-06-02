@@ -45,9 +45,24 @@ api.put("/objects/:id", (req, res) => {
   const { id } = req.params;
   const { name, value } = req.body;
   if (name && value) {
-    _.each(objects, (object, i) => {
+    _.each(objects, (object) => {
       if (object.id == id) {
         object.name = name;
+        object.value = value;
+      }
+    });
+    res.json(objects);
+  } else {
+    res.status(500).json({ error: "Error occures" });
+  }
+});
+
+api.patch("/objects/:id", (req, res) => {
+  const { id } = req.params;
+  const { value } = req.body;
+  if (value) {
+    _.each(objects, (object) => {
+      if (object.id == id) {
         object.value = value;
       }
     });
