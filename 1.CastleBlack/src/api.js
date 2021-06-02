@@ -16,12 +16,17 @@ const objects = [
   { id: 4, name: "potion", value: +20 },
 ];
 
+// ENDPOINTS FOR PLAYERS
+api.get("/players", (req, res) => {
+  res.json(players);
+});
+
 // ENDPOINTS FOR OBJECTS
-api.get("/objects", function (req, res) {
+api.get("/objects", (req, res) => {
   res.json(objects);
 });
 
-api.post("/objects", function (req, res) {
+api.post("/objects", (req, res) => {
   const { name, value } = req.body;
   if (name && value) {
     const id = objects.length + 1;
@@ -33,7 +38,7 @@ api.post("/objects", function (req, res) {
   }
 });
 
-api.get("/objects/:id", function (req, res) {
+api.get("/objects/:id", (req, res) => {
   const { id } = req.params;
   const objectById = _.filter(objects, (object) => {
     return object.id == id;
