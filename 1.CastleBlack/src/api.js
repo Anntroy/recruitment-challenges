@@ -33,6 +33,14 @@ api.post("/objects", function (req, res) {
   }
 });
 
+api.get("/objects/:id", function (req, res) {
+  const { id } = req.params;
+  const objectById = _.filter(objects, (object) => {
+    return object.id == id;
+  });
+  res.status(200).json(objectById);
+});
+
 api.put("/objects/:id", (req, res) => {
   const { id } = req.params;
   const { name, value } = req.body;
