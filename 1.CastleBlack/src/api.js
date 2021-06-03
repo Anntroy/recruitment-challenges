@@ -41,6 +41,21 @@ api.get("/players/:id", (req, res) => {
   res.status(200).json(playerById);
 });
 
+api.patch("/players/:id", (req, res) => {
+  const { id } = req.params;
+  const { health } = req.body;
+  if (health != 0) {
+    _.each(players, (player) => {
+      if (player.id == id) {
+        player.health = health;
+      }
+    });
+    res.json(players);
+  } else {
+    res.status(500).json({ error: "Error occures" });
+  }
+});
+
 // ENDPOINTS FOR OBJECTS
 api.get("/objects", (req, res) => {
   res.json(objects);
