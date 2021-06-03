@@ -19,7 +19,7 @@ const objects = [
 
 // ENDPOINTS FOR PLAYERS
 api.get("/players", (req, res) => {
-  res.json(players);
+  res.status(200).json(players);
 });
 
 api.post("/players", (req, res) => {
