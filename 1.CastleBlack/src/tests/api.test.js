@@ -31,3 +31,13 @@ test("a valid player can be added", (done) => {
     expect(data).toContainEqual(newPlayer.name);
   }
 });
+
+test("new player without name can not be added", (done) => {
+  const newPlayer = {
+    age: 43,
+    health: 96,
+    bag: [2],
+  };
+
+  request(app).post("/api/players").send(newPlayer).expect(400, done);
+});

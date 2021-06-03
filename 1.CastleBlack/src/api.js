@@ -30,7 +30,7 @@ api.post("/players", (req, res) => {
     players.push(newPlayer);
     res.status(201).json(players);
   } else {
-    res.status(500).json({ error: "Error occures" });
+    res.status(400).json({ error: "Bad request" });
   }
 });
 
