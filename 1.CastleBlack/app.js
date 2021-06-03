@@ -1,6 +1,5 @@
 const http = require("http");
 const express = require("express");
-const bodyParser = require("body-parser");
 const consola = require("consola");
 const router = require("./src/router.js");
 const api = require("./src/api.js");
