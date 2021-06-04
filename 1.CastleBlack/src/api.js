@@ -101,16 +101,22 @@ api.get("/objects/:id", (req, res) => {
 api.put("/objects/:id", (req, res) => {
   const { id } = req.params;
   const { name, value } = req.body;
-  if (name && value) {
-    _.each(objects, (object) => {
-      if (object.id == id) {
-        object.name = name;
-        object.value = value;
-      }
-    });
-    res.json(objects);
+  objectToUpdate = objectById(id);
+  const indexObjectToUpdate = _.indexOf(objects, objectToUpdate[0]);
+  const indexObjectToUpdateName = _.indexOf(
+    objects.map((object) => object.name),
+    name
+  );
+  if (indexObjectToUpdate != -1) {
+    if (name && value && indexObjectToUpdateName == -1) {
+      objectToUpdate[0].name = name;
+      objectToUpdate[0].value = value;
+      res.status(200).json(objectToUpdate);
+    } else {
+      res.status(400).json({ error: "Bad request" });
+    }
   } else {
-    res.status(500).json({ error: "Error occures" });
+    res.status(406).json({ error: "Such object does not exist" });
   }
 });
 
