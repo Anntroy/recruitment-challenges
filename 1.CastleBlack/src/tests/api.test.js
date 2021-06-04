@@ -39,8 +39,23 @@ describe("POST api/players", () => {
 describe("GET api/players/:id", () => {
   test("player with id 2 is returned", (done) => {
     request(app).get("/api/players/2").expect(hasSameId).expect(200, done);
+
     function hasSameId(res) {
       expect(res.body[0]).toHaveProperty("id", 2);
+    }
+  });
+});
+
+describe("PATCH api/players/:id", () => {
+  test("player with id 2 is killed", (done) => {
+    request(app)
+      .patch("/api/players/2")
+      .send({ health: null })
+      .expect(hasHealthNull)
+      .expect(200, done);
+
+    function hasHealthNull(res) {
+      expect(res.body[0]).toHaveProperty("health", null);
     }
   });
 });
