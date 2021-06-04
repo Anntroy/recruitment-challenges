@@ -41,12 +41,11 @@ api.patch("/players/:id", (req, res) => {
   const { id } = req.params;
   const { health } = req.body;
   if (health != 0) {
-    _.each(players, (player) => {
-      if (player.id == id) {
-        player.health = health;
-      }
+    const playerById = _.filter(players, (player) => {
+      return player.id == id;
     });
-    res.status(200).json(players);
+    playerById[0].health = health;
+    res.status(200).json(playerById);
   } else {
     res.status(500).json({ error: "Error occures" });
   }
