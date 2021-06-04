@@ -106,7 +106,7 @@ api.get("/objects/:id", (req, res) => {
 api.put("/objects/:id", (req, res) => {
   const { id } = req.params;
   const { name, value } = req.body;
-  objectToUpdate = objectById(id);
+  const objectToUpdate = objectById(id);
   const indexObjectToUpdate = _.indexOf(objects, objectToUpdate[0]);
   const indexObjectToUpdateName = _.indexOf(
     objects.map((object) => object.name),
@@ -128,15 +128,13 @@ api.put("/objects/:id", (req, res) => {
 api.patch("/objects/:id", (req, res) => {
   const { id } = req.params;
   const { value } = req.body;
-  if (value) {
-    _.each(objects, (object) => {
-      if (object.id == id) {
-        object.value = value;
-      }
-    });
-    res.json(objects);
+  const objectToUpdateValue = objectById(id);
+  const indexObjectToUpdateValue = _.indexOf(objects, objectToUpdateValue[0]);
+  if (indexObjectToUpdateValue != -1 && value) {
+    objectToUpdateValue[0].value = value;
+    res.status(200).json(objectToUpdateValue);
   } else {
-    res.status(500).json({ error: "Error occures" });
+    res.status(400).json({ error: "Bad request" });
   }
 });
 
