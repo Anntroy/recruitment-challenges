@@ -87,8 +87,16 @@ api.post("/objects", (req, res) => {
   if (name && value) {
     const id = objects.length + 1;
     const newObject = { ...req.body, id };
-    objects.push(newObject);
-    res.status(201).json(objects);
+    const indexOfNewObjectName = _.indexOf(
+      objects.map((object) => object.name),
+      newObject.name
+    );
+    if (indexOfNewObjectName == -1) {
+      objects.push(newObject);
+      res.status(201).json(objects);
+    } else {
+      res.status(406).json({ error: "Object with such name already exists" });
+    }
   } else {
     res.status(500).json({ error: "Error occures" });
   }
