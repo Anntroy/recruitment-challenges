@@ -142,10 +142,10 @@ api.patch("/objects/:id", (req, res) => {
 
 api.delete("/objects/:id", (req, res) => {
   const { id } = req.params;
-  const newObjects = _.filter(objects, (object) => {
+  _.filter(objects, (object) => {
     return object.id != id;
   });
-  res.status(200).json(newObjects);
+  res.status(200).json({ success: "Object has been deleted." });
 });
 
 module.exports = api;
