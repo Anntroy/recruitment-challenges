@@ -1,0 +1,230 @@
+[{
+  "info": {
+  "_postman_id": "7dcc3333-ef4f-46f9-8ac9-ce814950aaea",
+  "name": "CastleBlack",
+  "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+  {
+  "name": "Create new object",
+  "id": "2876f4f4-a048-4bc5-a70f-7057b5b9ebce",
+  "protocolProfileBehavior": {
+  "disabledSystemHeaders": {}
+  },
+  "request": {
+  "method": "POST",
+  "header": [
+  {
+  "key": "Content-Type",
+  "value": "application/json",
+  "type": "text"
+  }
+  ],
+  "body": {
+  "mode": "raw",
+  "raw": "{\n    \"name\": \"stone\",\n    \"value\": 80\n}"
+  },
+  "url": "http://0.0.0.0:8080/api/objects"
+  },
+  "response": []
+  },
+  {
+  "name": "Get all objects",
+  "id": "07b1db0f-65cf-4739-8a07-de6339e4deae",
+  "request": {
+  "method": "GET",
+  "header": [
+  {
+  "key": "",
+  "value": "",
+  "type": "text",
+  "disabled": true
+  }
+  ],
+  "url": "http://0.0.0.0:8080/api/objects"
+  },
+  "response": []
+  },
+  {
+  "name": "Delete object",
+  "id": "ee678176-7526-43ca-b710-250b34d186a6",
+  "request": {
+  "method": "DELETE",
+  "header": [
+  {
+  "key": "Content-Type",
+  "value": "application/json",
+  "type": "text"
+  }
+  ],
+  "url": "http://0.0.0.0:8080/api/objects/3"
+  },
+  "response": []
+  },
+  {
+  "name": "Update object",
+  "id": "d940ee19-5d3a-4f8a-94aa-890201aa3eb9",
+  "protocolProfileBehavior": {
+  "disabledSystemHeaders": {}
+  },
+  "request": {
+  "method": "PUT",
+  "header": [
+  {
+  "key": "Content-Type",
+  "value": "application/json",
+  "type": "text"
+  }
+  ],
+  "body": {
+  "mode": "raw",
+  "raw": "{\n    \"name\": \"ring\",\n    \"value\": 80\n}"
+  },
+  "url": "http://0.0.0.0:8080/api/objects/1"
+  },
+  "response": []
+  },
+  {
+  "name": "Get object by id",
+  "id": "48accece-5b4c-4f62-96be-b1e430846a95",
+  "request": {
+  "method": "GET",
+  "header": [
+  {
+  "key": "",
+  "value": "",
+  "type": "text",
+  "disabled": true
+  }
+  ],
+  "url": "http://0.0.0.0:8080/api/objects/1"
+  },
+  "response": []
+  },
+  {
+  "name": "Update object value",
+  "id": "b4d786ce-be4f-40d8-9926-725ef8d55e4c",
+  "protocolProfileBehavior": {
+  "disabledSystemHeaders": {}
+  },
+  "request": {
+  "method": "PATCH",
+  "header": [
+  {
+  "key": "Content-Type",
+  "value": "application/json",
+  "type": "text"
+  }
+  ],
+  "body": {
+  "mode": "raw",
+  "raw": "{\n    \"value\": 50\n}"
+  },
+  "url": "http://0.0.0.0:8080/api/objects/1"
+  },
+  "response": []
+  },
+  {
+  "name": "Get all players",
+  "id": "20b240f4-d6bd-4c45-84b0-22ccc2b53902",
+  "request": {
+  "method": "GET",
+  "header": [
+  {
+  "key": "Content-Type",
+  "value": "application/json",
+  "type": "text"
+  }
+  ],
+  "url": "http://0.0.0.0:8080/api/players"
+  },
+  "response": []
+  },
+  {
+  "name": "Create new player",
+  "id": "741e4403-bf39-4ce7-8e38-9cdc9eab988b",
+  "protocolProfileBehavior": {
+  "disabledSystemHeaders": {}
+  },
+  "request": {
+  "method": "POST",
+  "header": [
+  {
+  "key": "Content-Type",
+  "value": "application/json",
+  "type": "text"
+  }
+  ],
+  "body": {
+  "mode": "raw",
+  "raw": "{\n     \"name\": \"Larsen Lanni\",\n        \"age\": 43,\n        \"health\": 96,\n        \"bag\": [\n            2\n        ]\n}"
+  },
+  "url": "http://0.0.0.0:8080/api/players"
+  },
+  "response": []
+  },
+  {
+  "name": "Get player by id",
+  "id": "f580965c-0b88-428a-8711-91af7aec20b0",
+  "request": {
+  "method": "GET",
+  "header": [
+  {
+  "key": "",
+  "value": "",
+  "type": "text",
+  "disabled": true
+  }
+  ],
+  "url": "http://0.0.0.0:8080/api/players/1"
+  },
+  "response": []
+  },
+  {
+  "name": "Kill player (set player's health to null)",
+  "id": "1479ccbd-ef12-40e9-aa70-b925331c9108",
+  "protocolProfileBehavior": {
+  "disabledSystemHeaders": {}
+  },
+  "request": {
+  "method": "PATCH",
+  "header": [
+  {
+  "key": "Content-Type",
+  "value": "application/json",
+  "type": "text"
+  }
+  ],
+  "body": {
+  "mode": "raw",
+  "raw": "{\n    \"health\": null\n}"
+  },
+  "url": "http://0.0.0.0:8080/api/players/4"
+  },
+  "response": []
+  },
+  {
+  "name": "Add another object to players bag",
+  "id": "24ca2ba8-59c1-43f0-aeb1-4fa422f3f847",
+  "protocolProfileBehavior": {
+  "disabledSystemHeaders": {}
+  },
+  "request": {
+  "method": "PATCH",
+  "header": [
+  {
+  "key": "Content-Type",
+  "value": "application/json",
+  "type": "text"
+  }
+  ],
+  "body": {
+  "mode": "raw",
+  "raw": ""
+  },
+  "url": "http://0.0.0.0:8080/api/players/4/1"
+  },
+  "response": []
+  }
+  ]
+  }]

@@ -14,6 +14,9 @@ app.set("port", port);
 
 async function run() {
   app.disable("x-powered-by"); // QUESTION: any reason is this line here?
+  // This line is used to protected our app from attackers who use "x-powered-by" headers (which is enabled by default)
+  // to detect apps running Express and then launch specifically targeted attacks.
+  // We need to add this line unless we are using some middleware like Helmet.
 
   //middlewares
   app.use(express.json());
