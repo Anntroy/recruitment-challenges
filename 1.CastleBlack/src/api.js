@@ -70,7 +70,7 @@ api.patch("/players/:id/:objectId", (req, res) => {
 
 // ENDPOINTS FOR OBJECTS
 api.get("/objects", (req, res) => {
-  res.json(objects);
+  res.status(200).json(objects);
 });
 
 api.post("/objects", (req, res) => {
@@ -95,7 +95,12 @@ api.post("/objects", (req, res) => {
 
 api.get("/objects/:id", (req, res) => {
   const { id } = req.params;
-  res.status(200).json(objectById(id));
+  const indexObjectToGet = _.indexOf(objects, objectById(id)[0]);
+  if (indexObjectToGet != -1) {
+    res.status(200).json(objectById(id));
+  } else {
+    res.status(204).json({ error: "No content" });
+  }
 });
 
 api.put("/objects/:id", (req, res) => {
