@@ -1,6 +1,12 @@
 const request = require("supertest");
 const app = require("../../app");
 const { newPlayer, uncompleteNewPlayer } = require("../sources/source");
+const {
+  hasSameId,
+  hasHealthNull,
+  hasNewPlayer,
+  hasAddedObject,
+} = require("../utils/test.utils");
 
 describe("GET api/players", () => {
   test("players are returned as json", (done) => {
@@ -22,11 +28,6 @@ describe("POST api/players", () => {
       .expect(201, done);
 
     request(app).get("/api/players").expect(hasNewPlayer).end(done);
-
-    function hasNewPlayer(res) {
-      const data = res.body.map((player) => player.name);
-      expect(data).toContainEqual(newPlayer.name);
-    }
   });
   test("new player without name can not be added", (done) => {
     request(app)
@@ -39,10 +40,6 @@ describe("POST api/players", () => {
 describe("GET api/players/:id", () => {
   test("player with id 2 is returned", (done) => {
     request(app).get("/api/players/2").expect(hasSameId).expect(200, done);
-
-    function hasSameId(res) {
-      expect(res.body[0]).toHaveProperty("id", 2);
-    }
   });
 });
 
@@ -53,10 +50,6 @@ describe("PATCH api/players/:id", () => {
       .send({ health: null })
       .expect(hasHealthNull)
       .expect(200, done);
-
-    function hasHealthNull(res) {
-      expect(res.body[0]).toHaveProperty("health", null);
-    }
   });
 });
 
@@ -66,9 +59,5 @@ describe("PATCH api/players/:id/:objectId", () => {
       .patch("/api/players/2/3")
       .expect(hasAddedObject)
       .expect(200, done);
-
-    function hasAddedObject(res) {
-      expect(res.body[0].bag).toEqual(expect.arrayContaining([3]));
-    }
   });
 });
