@@ -59,3 +59,16 @@ describe("PATCH api/players/:id", () => {
     }
   });
 });
+
+describe("PATCH api/players/:id/:objectId", () => {
+  test("add object which is not already in the players bag", (done) => {
+    request(app)
+      .patch("/api/players/2/3")
+      .expect(hasAddedObject)
+      .expect(200, done);
+
+    function hasAddedObject(res) {
+      expect(res.body[0].bag).toEqual(expect.arrayContaining([3]));
+    }
+  });
+});
