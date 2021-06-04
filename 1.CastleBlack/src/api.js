@@ -6,10 +6,13 @@ const { players, objects } = require("./sources/source");
 const { playerById, objectById } = require("./utils/api.utils.js");
 
 // ENDPOINTS FOR PLAYERS
+
+// Endpoint to get all players
 api.get("/players", (req, res) => {
   res.status(200).json(players);
 });
 
+// Endpoint to create a new player if there is no existing player with the same name
 api.post("/players", (req, res) => {
   const { name, age, health, bag } = req.body;
   if (name && age && health && bag) {
@@ -30,6 +33,7 @@ api.post("/players", (req, res) => {
   }
 });
 
+// Endpoint to get player by id
 api.get("/players/:id", (req, res) => {
   const { id } = req.params;
   const indexPlayerToGet = _.indexOf(players, playerById(id)[0]);
@@ -40,6 +44,7 @@ api.get("/players/:id", (req, res) => {
   }
 });
 
+// Endpoint to kill player (set player's health to null)
 api.patch("/players/:id", (req, res) => {
   const { id } = req.params;
   const { health } = req.body;
@@ -52,6 +57,7 @@ api.patch("/players/:id", (req, res) => {
   }
 });
 
+//  Endpoint to add a new object to the player's bag just in case this player exists and has no same object already
 api.patch("/players/:id/:objectId", (req, res) => {
   const { id, objectId } = req.params;
   if (
@@ -73,10 +79,13 @@ api.patch("/players/:id/:objectId", (req, res) => {
 });
 
 // ENDPOINTS FOR OBJECTS
+
+// Endpoint to get all objects
 api.get("/objects", (req, res) => {
   res.status(200).json(objects);
 });
 
+// Endpoint to create a new object if there is no existing object with the same name
 api.post("/objects", (req, res) => {
   const { name, value } = req.body;
   if (name && value) {
@@ -97,6 +106,7 @@ api.post("/objects", (req, res) => {
   }
 });
 
+// Endpoint to get object by id
 api.get("/objects/:id", (req, res) => {
   const { id } = req.params;
   const indexObjectToGet = _.indexOf(objects, objectById(id)[0]);
@@ -107,6 +117,7 @@ api.get("/objects/:id", (req, res) => {
   }
 });
 
+// Endpoint to update object if the object exists and there is no other object with the same name
 api.put("/objects/:id", (req, res) => {
   const { id } = req.params;
   const { name, value } = req.body;
@@ -130,6 +141,7 @@ api.put("/objects/:id", (req, res) => {
   }
 });
 
+// Endpoint to update the object's value if the object exists
 api.patch("/objects/:id", (req, res) => {
   const { id } = req.params;
   const { value } = req.body;
@@ -143,6 +155,7 @@ api.patch("/objects/:id", (req, res) => {
   }
 });
 
+// Endpoint to delete the object if it exists
 api.delete("/objects/:id", (req, res) => {
   const { id } = req.params;
   objectToDelete = objectById(id);

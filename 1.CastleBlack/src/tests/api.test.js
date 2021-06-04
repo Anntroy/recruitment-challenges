@@ -8,6 +8,8 @@ const {
   hasAddedObject,
 } = require("../utils/test.utils");
 
+// TESTS FOR ENDPOINTS OF PLAYERS
+
 describe("GET api/players", () => {
   test("players are returned as json", (done) => {
     request(app)
