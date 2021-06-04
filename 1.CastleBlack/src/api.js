@@ -131,9 +131,9 @@ api.patch("/objects/:id", (req, res) => {
 
 api.delete("/objects/:id", (req, res) => {
   const { id } = req.params;
-  _.filter(objects, (object) => {
-    return object.id != id;
-  });
+  objectToDelete = objectById(id);
+  const indexObjectToDelete = _.indexOf(objects, objectToDelete[0]);
+  objects.splice(indexObjectToDelete, 1);
   res.status(200).json({ success: "Object has been deleted." });
 });
 
