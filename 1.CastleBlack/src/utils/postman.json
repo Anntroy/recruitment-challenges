@@ -1,4 +1,4 @@
-{
+[{
   "info": {
   "_postman_id": "7dcc3333-ef4f-46f9-8ac9-ce814950aaea",
   "name": "CastleBlack",
@@ -22,7 +22,7 @@
   ],
   "body": {
   "mode": "raw",
-  "raw": "{\n    \"name\": \"stone\",\n    \"value\": -10\n}"
+  "raw": "{\n    \"name\": \"stone\",\n    \"value\": 80\n}"
   },
   "url": "http://0.0.0.0:8080/api/objects"
   },
@@ -57,7 +57,7 @@
   "type": "text"
   }
   ],
-  "url": "http://0.0.0.0:8080/api/objects/2"
+  "url": "http://0.0.0.0:8080/api/objects/3"
   },
   "response": []
   },
@@ -78,7 +78,7 @@
   ],
   "body": {
   "mode": "raw",
-  "raw": "{\n    \"name\": \"stone\",\n    \"value\": -5\n}"
+  "raw": "{\n    \"name\": \"ring\",\n    \"value\": 80\n}"
   },
   "url": "http://0.0.0.0:8080/api/objects/1"
   },
@@ -97,7 +97,7 @@
   "disabled": true
   }
   ],
-  "url": "http://0.0.0.0:8080/api/objects/4"
+  "url": "http://0.0.0.0:8080/api/objects/1"
   },
   "response": []
   },
@@ -120,7 +120,7 @@
   "mode": "raw",
   "raw": "{\n    \"value\": 50\n}"
   },
-  "url": "http://0.0.0.0:8080/api/objects/3"
+  "url": "http://0.0.0.0:8080/api/objects/1"
   },
   "response": []
   },
@@ -157,7 +157,7 @@
   ],
   "body": {
   "mode": "raw",
-  "raw": "{\n     \"name\": \"Merse Lanni\",\n        \"age\": 43,\n        \"health\": 96,\n        \"bag\": [\n            2\n        ]\n}"
+  "raw": "{\n     \"name\": \"Larsen Lanni\",\n        \"age\": 43,\n        \"health\": 96,\n        \"bag\": [\n            2\n        ]\n}"
   },
   "url": "http://0.0.0.0:8080/api/players"
   },
@@ -176,7 +176,7 @@
   "disabled": true
   }
   ],
-  "url": "http://0.0.0.0:8080/api/players/5"
+  "url": "http://0.0.0.0:8080/api/players/1"
   },
   "response": []
   },
@@ -199,7 +199,7 @@
   "mode": "raw",
   "raw": "{\n    \"health\": null\n}"
   },
-  "url": "http://0.0.0.0:8080/api/players/2"
+  "url": "http://0.0.0.0:8080/api/players/4"
   },
   "response": []
   },
@@ -222,9 +222,9 @@
   "mode": "raw",
   "raw": ""
   },
-  "url": "http://0.0.0.0:8080/api/players/2/4"
+  "url": "http://0.0.0.0:8080/api/players/4/1"
   },
   "response": []
   }
   ]
-  }
+  }]
