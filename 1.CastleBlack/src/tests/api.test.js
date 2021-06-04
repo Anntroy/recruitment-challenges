@@ -35,3 +35,12 @@ describe("POST api/players", () => {
       .expect(400, done);
   });
 });
+
+describe("GET api/players/:id", () => {
+  test("player with id 2 is returned", (done) => {
+    request(app).get("/api/players/2").expect(hasSameId).expect(200, done);
+    function hasSameId(res) {
+      expect(res.body[0]).toHaveProperty("id", 2);
+    }
+  });
+});
