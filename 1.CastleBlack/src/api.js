@@ -43,11 +43,12 @@ api.get("/players/:id", (req, res) => {
 api.patch("/players/:id", (req, res) => {
   const { id } = req.params;
   const { health } = req.body;
-  if (health != 0) {
+  const indexPlayerToKill = _.indexOf(players, playerById(id)[0]);
+  if (health != 0 && indexPlayerToKill != -1) {
     playerById(id)[0].health = health;
     res.status(200).json(playerById(id));
   } else {
-    res.status(500).json({ error: "Error occures" });
+    res.status(400).json({ error: "Bad request" });
   }
 });
 
