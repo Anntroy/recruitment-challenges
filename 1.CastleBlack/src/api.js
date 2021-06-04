@@ -14,8 +14,16 @@ api.post("/players", (req, res) => {
   if (name && age && health && bag) {
     const id = players.length + 1;
     const newPlayer = { ...req.body, id };
-    players.push(newPlayer);
-    res.status(201).json(players);
+    const indexOfNewPlayerName = _.indexOf(
+      players.map((player) => player.name),
+      newPlayer.name
+    );
+    if (indexOfNewPlayerName == -1) {
+      players.push(newPlayer);
+      res.status(201).json(players);
+    } else {
+      res.status(406).json({ error: "Player with such name already exists" });
+    }
   } else {
     res.status(400).json({ error: "Bad request" });
   }
