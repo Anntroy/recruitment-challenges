@@ -3,6 +3,7 @@ const api = Router();
 const _ = require("underscore");
 
 const { players, objects } = require("./sources/source");
+const { playerById, objectById } = require("./utils/api.utils.js");
 
 // ENDPOINTS FOR PLAYERS
 api.get("/players", (req, res) => {
@@ -31,21 +32,15 @@ api.post("/players", (req, res) => {
 
 api.get("/players/:id", (req, res) => {
   const { id } = req.params;
-  const playerById = _.filter(players, (player) => {
-    return player.id == id;
-  });
-  res.status(200).json(playerById);
+  res.status(200).json(playerById(id));
 });
 
 api.patch("/players/:id", (req, res) => {
   const { id } = req.params;
   const { health } = req.body;
   if (health != 0) {
-    const playerById = _.filter(players, (player) => {
-      return player.id == id;
-    });
-    playerById[0].health = health;
-    res.status(200).json(playerById);
+    playerById(id)[0].health = health;
+    res.status(200).json(playerById(id));
   } else {
     res.status(500).json({ error: "Error occures" });
   }
@@ -54,17 +49,14 @@ api.patch("/players/:id", (req, res) => {
 api.patch("/players/:id/:objectId", (req, res) => {
   const { id, objectId } = req.params;
   if (id && objectId) {
-    const playerById = _.filter(players, (player) => {
-      return player.id == id;
-    });
-    const objectById = _.filter(objects, (object) => {
-      return object.id == parseInt(objectId);
-    });
-    if (playerById.length > 0 && objectById.length > 0) {
-      const indexObject = _.indexOf(playerById[0].bag, parseInt(objectId));
+    if (
+      playerById(id).length > 0 &&
+      objectById(parseInt(objectId)).length > 0
+    ) {
+      const indexObject = _.indexOf(playerById(id)[0].bag, parseInt(objectId));
       if (indexObject == -1) {
-        playerById[0].bag.push(parseInt(objectId));
-        res.json(playerById);
+        playerById(id)[0].bag.push(parseInt(objectId));
+        res.json(playerById(id));
       } else {
         res.status(406).json({ error: "Object is already in the bag" });
       }
@@ -103,10 +95,7 @@ api.post("/objects", (req, res) => {
 
 api.get("/objects/:id", (req, res) => {
   const { id } = req.params;
-  const objectById = _.filter(objects, (object) => {
-    return object.id == id;
-  });
-  res.status(200).json(objectById);
+  res.status(200).json(objectById(id));
 });
 
 api.put("/objects/:id", (req, res) => {
