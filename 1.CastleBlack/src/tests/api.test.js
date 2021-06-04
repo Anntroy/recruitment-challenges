@@ -1,6 +1,6 @@
 const request = require("supertest");
 const app = require("../../app");
-const { newPlayer, uncompleteNewPlayer } = require("../helpers/source");
+const { newPlayer, uncompleteNewPlayer } = require("../sources/source");
 
 describe("GET api/players", () => {
   test("players are returned as json", (done) => {

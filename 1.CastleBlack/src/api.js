@@ -2,7 +2,7 @@ const { Router } = require("express");
 const api = Router();
 const _ = require("underscore");
 
-const { players, objects } = require("./helpers/source");
+const { players, objects } = require("./sources/source");
 
 // ENDPOINTS FOR PLAYERS
 api.get("/players", (req, res) => {
