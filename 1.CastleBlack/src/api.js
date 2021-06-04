@@ -32,7 +32,12 @@ api.post("/players", (req, res) => {
 
 api.get("/players/:id", (req, res) => {
   const { id } = req.params;
-  res.status(200).json(playerById(id));
+  const indexPlayerToGet = _.indexOf(players, playerById(id)[0]);
+  if (indexPlayerToGet != -1) {
+    res.status(200).json(playerById(id));
+  } else {
+    res.status(204).json({ error: "No content" });
+  }
 });
 
 api.patch("/players/:id", (req, res) => {
