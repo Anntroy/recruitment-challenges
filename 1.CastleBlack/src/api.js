@@ -54,23 +54,21 @@ api.patch("/players/:id", (req, res) => {
 
 api.patch("/players/:id/:objectId", (req, res) => {
   const { id, objectId } = req.params;
-  if (id && objectId) {
-    if (
-      playerById(id).length > 0 &&
-      objectById(parseInt(objectId)).length > 0
-    ) {
-      const indexObject = _.indexOf(playerById(id)[0].bag, parseInt(objectId));
-      if (indexObject == -1) {
-        playerById(id)[0].bag.push(parseInt(objectId));
-        res.json(playerById(id));
-      } else {
-        res.status(406).json({ error: "Object is already in the bag" });
-      }
+  if (
+    id &&
+    objectId &&
+    playerById(id).length > 0 &&
+    objectById(parseInt(objectId)).length > 0
+  ) {
+    const indexObject = _.indexOf(playerById(id)[0].bag, parseInt(objectId));
+    if (indexObject == -1) {
+      playerById(id)[0].bag.push(parseInt(objectId));
+      res.json(playerById(id));
     } else {
-      res.status(400).json({ error: "Bad request" });
+      res.status(406).json({ error: "Object is already in the bag" });
     }
   } else {
-    res.status(500).json({ error: "Error occures" });
+    res.status(400).json({ error: "Bad request" });
   }
 });
 
