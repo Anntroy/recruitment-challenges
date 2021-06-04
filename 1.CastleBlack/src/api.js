@@ -112,16 +112,17 @@ api.put("/objects/:id", (req, res) => {
     objects.map((object) => object.name),
     name
   );
-  if (indexObjectToUpdate != -1) {
-    if (name && value && indexObjectToUpdateName == -1) {
-      objectToUpdate[0].name = name;
-      objectToUpdate[0].value = value;
-      res.status(200).json(objectToUpdate);
-    } else {
-      res.status(400).json({ error: "Bad request" });
-    }
+  if (
+    name &&
+    value &&
+    indexObjectToUpdateName == -1 &&
+    indexObjectToUpdate != -1
+  ) {
+    objectToUpdate[0].name = name;
+    objectToUpdate[0].value = value;
+    res.status(200).json(objectToUpdate);
   } else {
-    res.status(406).json({ error: "Such object does not exist" });
+    res.status(400).json({ error: "Bad request" });
   }
 });
 
