@@ -21,7 +21,7 @@ api.post("/players", (req, res) => {
     );
     if (indexOfNewPlayerName == -1) {
       players.push(newPlayer);
-      res.status(201).json(players);
+      res.status(201).json(newPlayer);
     } else {
       res.status(406).json({ error: "Player with such name already exists" });
     }
@@ -84,7 +84,7 @@ api.post("/objects", (req, res) => {
     );
     if (indexOfNewObjectName == -1) {
       objects.push(newObject);
-      res.status(201).json(objects);
+      res.status(201).json(newObject);
     } else {
       res.status(406).json({ error: "Object with such name already exists" });
     }
@@ -133,8 +133,12 @@ api.delete("/objects/:id", (req, res) => {
   const { id } = req.params;
   objectToDelete = objectById(id);
   const indexObjectToDelete = _.indexOf(objects, objectToDelete[0]);
-  objects.splice(indexObjectToDelete, 1);
-  res.status(200).json({ success: "Object has been deleted." });
+  if (indexObjectToDelete != -1) {
+    objects.splice(indexObjectToDelete, 1);
+    res.status(200).json({ success: "Object has been deleted." });
+  } else {
+    res.status(406).json({ error: "Such object does not exist" });
+  }
 });
 
 module.exports = api;
